@@ -20,7 +20,12 @@ class ProfileController extends Controller
 	public function getEdit(){
 		return view('profile.edit');
 	}
-	public function postEdit(){
-
+	public function postEdit(Request $request){
+		$this -> validate($request,[
+			'first_name'=>'alpha|max:50',
+			'last_name'=>'alpha|max:50',
+			'location'=>'max:30',
+			]);
+		dd('okay!!');
 	}
 }
