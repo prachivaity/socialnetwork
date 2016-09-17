@@ -73,7 +73,12 @@ public function friendOf(){
     }
 
     public function addFriend(User $user){
-        $this->friendRequests()->where('id',$user->id)->first()->pivot->update(['accepted'=>true,]);
+        $this->friendOf()->attach($user->id);
+    }
+
+    public function acceptFriendRequest(User $user){
+        $this->friendRequests()->where('id',$user->id)->first()->pivot->update(['accepted'=>true,
+            ]);
     }
 
     public function isFriendsWith(User $user){
