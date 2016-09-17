@@ -64,7 +64,13 @@ Route::get('/profile/edit',[
 
 Route::post('/profile/edit',[
 'uses' => '\Chatty\Http\Controllers\ProfileController@postEdit',
-
 	'middleware' => ['auth'],
 	]);
+
+Route::get('/friends',[
+'uses' => '\Chatty\Http\Controllers\FriendController@getIndex',
+'as' => 'friend.index',
+	'middleware' => ['auth'],
+	]);
+
 
