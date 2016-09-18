@@ -73,15 +73,21 @@ Route::get('/friends',[
 	'middleware' => ['auth'],
 	]);
 
-Route::get('/friends/add/{username}/',[
+Route::get('/friends/add/{username}',[
 'uses' => '\Chatty\Http\Controllers\FriendController@getAdd',
 'as' => 'friend.add',
 	'middleware' => ['auth'],
 	]);
 
-Route::get('/friends/accept/{username}/',[
+Route::get('/friends/accept/{username}',[
 'uses' => '\Chatty\Http\Controllers\FriendController@getAccept',
 'as' => 'friend.accept',
 	'middleware' => ['auth'],
+	]);
+
+Route::post('/status',[
+'uses' => '\Chatty\Http\Controllers\StatusController@postStatus',
+'as' => 'status.post',
+'middleware' => ['auth'],
 	]);
 
