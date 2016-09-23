@@ -21,7 +21,36 @@
 
 <div class="row">
     <div class="col-lg-5">
-        <!-- Timeline statuses and replies -->
+        @if(!$statuses->count())
+        <p>There's nothing in your timeline, yet. Keep refreshing to get fresh content.</p>
+        @else
+        	@foreach ($statuses as $status)
+        		<div class="media">
+    <a class="pull-left" href="{{route('profile.index',['username'=>$status->user->username])}}">
+        <img class="media-object" alt="{{$status->user->getNameOrUsername()}}" src="{{$status->user->getAvatarUrl()}}">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading"><a href="{{route('profile.index',['username'=>$status->user->username])}}">{{$status->user->getNameOrUsername()}}</a></h4>
+        <p>{{$status->body}}</p>
+        <ul class="list-inline">
+            <li>{{$status->created_at->diffForHumans()}}</li>
+            <li><a href="#">Like</a></li>
+            <li>10 likes</li>
+        </ul>
+		<form role="form" action="#" method="post">
+            <div class="form-group">
+                <textarea name="reply-1" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
+            </div>
+            <input type="submit" value="Reply" class="btn btn-default btn-sm">
+        </form>
+        </div>
+        </div>
+
+        
+    
+
+        	@endforeach
+        @endif
     </div>
 </div>
 
