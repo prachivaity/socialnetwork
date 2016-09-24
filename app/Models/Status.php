@@ -4,6 +4,7 @@ namespace Chatty\Models;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Status extends Model
 {
 	protected $table = 'statuses';
@@ -19,4 +20,10 @@ public function scopeNotReply($query){
 public function replies(){
 	return $this->hasMany('Chatty\Models\Status','parent_id');
 }
+
+public function likes(){
+	return $this->morphMany('Chatty\Models\Like','likeable');
+}
+
+
 }
